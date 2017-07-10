@@ -37,10 +37,30 @@ class Book
     {
         $executed = $GLOBALS['DB']->exec("INSERT INTO books (title, author) VALUES ('{$this->getTitle()}', '{$this->getAuthor()}')");
         if ($executed) {
+            $this->id = $GLOBALS['DB']->lastInsertId();
             return true;
         } else {
             return false;
         }
+    }
+
+    static function getAll()
+    {
+        $returned_books = $GLOBALS['DB']->query("SELECT * FROM books;");
+        $books = array();
+        foreach($returned_books as $book) {
+            $title = $book['title'];
+            $author = $book['author'];
+            $id = $book['id'];
+            $new_book = new Book($title, $author, $id);
+            array_push($books, $new_book);
+        }
+        return $books;
+    }
+
+    static function deleteAll()
+    {
+        $GLOBALS['DB']->exec("DELETE FROM books;");
     }
 
 }
