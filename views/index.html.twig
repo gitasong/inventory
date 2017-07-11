@@ -18,6 +18,10 @@
             <button type="submit">Add book</button>
         </form>
 
+        <form action='/delete_all' method='post'>
+            <button type='submit'>Delete All Books</button>
+        </form>
+
         {% if books is not empty %}
             <p>Here are all your books:</p>
             <ul>

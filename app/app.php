@@ -28,6 +28,11 @@
         return $app['twig']->render('single_book.html.twig', array('book' => $book));
     });
 
+    $app->post("/delete_all", function() use ($app) {
+        Book::deleteAll();
+        return $app['twig']->render('index.html.twig');
+    });
+
 
     return $app;
 ?>
