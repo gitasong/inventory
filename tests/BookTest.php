@@ -130,6 +130,23 @@
             $this->assertEquals([$test_book_2], Book::getAll());
         }
 
+        function testUpdateTitle()
+        {
+            //Arrange
+            $title = "The Unbearable Lightness of Being";
+            $author = "Milan Kundera";
+            $test_book = new Book($title, $author);
+            $test_book->save();
+
+            $new_title = "The Book of Laughter and Forgetting";
+
+            //Act
+            $test_book->updateTitle($new_title);
+
+            //Assert
+            $this->assertEquals("The Book of Laughter and Forgetting", $test_book->getTitle());
+        }
+
 
     }
 
