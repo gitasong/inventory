@@ -147,6 +147,23 @@
             $this->assertEquals("The Book of Laughter and Forgetting", $test_book->getTitle());
         }
 
+        function testUpdateAuthor()
+        {
+            //Arrange
+            $title = "The Unbearable Lightness of Being";
+            $author = "Milan Kundera";
+            $test_book = new Book($title, $author);
+            $test_book->save();
+
+            $new_author = "An Imposter";
+
+            //Act
+            $test_book->updateAuthor($new_author);
+
+            //Assert
+            $this->assertEquals("An Imposter", $test_book->getAuthor());
+        }
+
 
     }
 

@@ -106,5 +106,16 @@ class Book
         }
     }
 
+    function updateAuthor($new_author)
+    {
+        $executed = $GLOBALS['DB']->exec("UPDATE books SET author = '{$new_author}' WHERE id = {$this->getId()};");
+        if ($executed) {
+           $this->setAuthor($new_author);
+           return true;
+        } else {
+           return false;
+        }
+    }
+
 }
 ?>
