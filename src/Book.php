@@ -49,6 +49,23 @@ class Book
         }
     }
 
+    static function find($search_id)
+    {
+      $found_book = null;
+          $returned_books = $GLOBALS['DB']->prepare("SELECT * FROM books WHERE id = :id");
+          $returned_books->bindParam(':id', $search_id, PDO::PARAM_STR);
+          $returned_books->execute();
+          foreach($returned_books as $book) {
+              $book_title = $book['title'];
+              $book_author = $book['author'];
+              $book_id = $book['id'];
+              if ($book_id == $search_id) {
+                $found_book = new Book($book_title, $book_author, $book_id);
+              }
+          }
+          return $found_book;
+    }
+
     static function getAll()
     {
         $returned_books = $GLOBALS['DB']->query("SELECT * FROM books;");
