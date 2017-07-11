@@ -37,24 +37,58 @@
         }
 
         function testGetAll()
-            {
-                //Arrange
-                $title_1 = "The Unbearable Lightness of Being";
-                $author_1 = "Milan Kundera";
-                $test_book_1 = new Book($title_1, $author_1);
-                $test_book_1->save();
+        {
+            //Arrange
+            $title_1 = "The Unbearable Lightness of Being";
+            $author_1 = "Milan Kundera";
+            $test_book_1 = new Book($title_1, $author_1);
+            $test_book_1->save();
 
-                $title_2 = "The Riddle-Master of Hed";
-                $author_2 = "Patricia A. McKillip";
-                $test_book_2 = new Book($title_2, $author_2);
-                $test_book_2->save();
+            $title_2 = "The Riddle-Master of Hed";
+            $author_2 = "Patricia A. McKillip";
+            $test_book_2 = new Book($title_2, $author_2);
+            $test_book_2->save();
 
-                //Act
-                $result = Book::getAll();
+            //Act
+            $result = Book::getAll();
 
-                //Assert
-                $this->assertEquals([$test_book_1, $test_book_2], $result);
-            }
+            //Assert
+            $this->assertEquals([$test_book_1, $test_book_2], $result);
+        }
+
+        function testDeleteAll()
+        {
+            //Arrange
+            $title_1 = "The Unbearable Lightness of Being";
+            $author_1 = "Milan Kundera";
+            $test_book_1 = new Book($title_1, $author_1);
+            $test_book_1->save();
+
+            $title_2 = "The Riddle-Master of Hed";
+            $author_2 = "Patricia A. McKillip";
+            $test_book_2 = new Book($title_2, $author_2);
+            $test_book_2->save();
+
+            //Act
+            Book::deleteAll();
+            $result = Book::getAll();
+
+            //Assert
+            $this->assertEquals([], $result);
+        }
+
+        function testGetId()
+        {
+            //Arrange
+            $title = "The Unbearable Lightness of Being";
+            $author = "Milan Kundera";
+            $test_book = new Book($title, $author);
+            $test_book->save();
+            //Act
+            $result = $test_book->getId();
+            //Assert
+            $this->assertEquals(true, is_numeric($result));
+        }
 
     }
 

@@ -33,6 +33,11 @@ class Book
         return $this->author;
     }
 
+    function getId()
+    {
+        return $this->id;
+    }
+
     function save()
     {
         $executed = $GLOBALS['DB']->exec("INSERT INTO books (title, author) VALUES ('{$this->getTitle()}', '{$this->getAuthor()}')");
