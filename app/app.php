@@ -23,6 +23,11 @@
         return $app['twig']->render('index.html.twig', array('books' => Book::getAll()));
     });
 
+    $app->get("/books/{id}", function($id) use ($app) {
+        $book = Book::find($id);
+        return $app['twig']->render('single_book.html.twig', array('book' => $book));
+    });
+
 
     return $app;
 ?>
