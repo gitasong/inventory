@@ -85,5 +85,15 @@ class Book
         $GLOBALS['DB']->exec("DELETE FROM books;");
     }
 
+    function deleteSingle()
+    {
+        $executed = $GLOBALS['DB']->exec("DELETE FROM books WHERE id = {$this->getId()};");
+        if ($executed) {
+           return true;
+        } else {
+           return false;
+        }
+    }
+
 }
 ?>

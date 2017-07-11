@@ -110,6 +110,26 @@
             $this->assertEquals($test_book_1, $result);
         }
 
+        function testDeleteSingle()
+        {
+            //Arrange
+            $title_1 = "The Unbearable Lightness of Being";
+            $author_1 = "Milan Kundera";
+            $test_book_1 = new Book($title_1, $author_1);
+            $test_book_1->save();
+
+            $title_2 = "The Riddle-Master of Hed";
+            $author_2 = "Patricia A. McKillip";
+            $test_book_2 = new Book($title_2, $author_2);
+            $test_book_2->save();
+
+            //Act
+            $test_book_1->deleteSingle();
+
+            //Assert
+            $this->assertEquals([$test_book_2], Book::getAll());
+        }
+
 
     }
 
