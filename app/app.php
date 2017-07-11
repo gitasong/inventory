@@ -17,5 +17,12 @@
         return $app['twig']->render('index.html.twig', array('books' => Book::getAll()));
     });
 
+    $app->post("/", function() use ($app) {
+        $new_book = new Book($_POST['title'], $_POST['author']);
+        $new_book->save();
+        return $app['twig']->render('index.html.twig', array('books' => Book::getAll()));
+    });
+
+
     return $app;
 ?>
